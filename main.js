@@ -16,9 +16,7 @@ fetch(API_URL)
 
 console.log(window.location);
 
-window.addEventListener("hashchange", (event) => {
-  // console.log(event)
-
+function renderPlanetsHTML(event) {
   console.log(event.target.location.hash);
 
   console.log("Planets Array", planets);
@@ -30,7 +28,10 @@ window.addEventListener("hashchange", (event) => {
   console.log("Current Planet", currentPlanet);
 
   planetsDiv.innerHTML = `
-    <img src="${currentPlanet.images.planet}" />
+    <div class="imageWrapper">
+      <img class="planetsImg" src="${currentPlanet.images.planet}" />
+      <img class="geologyImg" style="display: none"/>
+    </div>
 
     <div class="planetsText">
       <h1>${currentPlanet.name}</h1>
@@ -39,13 +40,54 @@ window.addEventListener("hashchange", (event) => {
       <p>Source: <a href="" target="_blank">Wikipedia</a> </p>
 
       <div class="tabs">
-        <div class="tab tab__active" data-tab="overview"><span>1</span><p>Overview</p></div> 
-        <div class="tab" data-tab="structure"><span>2</span><p>Internal Structure</p></div> 
+        <div class="tab tab__active" data-tab="planet"><span>1</span><p>Overview</p></div> 
+        <div class="tab" data-tab="internal"><span>2</span><p>Internal Structure</p></div> 
         <div class="tab" data-tab="geology"><span>3</span><p>Surface Geology</p></div> 
       </div>
 
     </div>
   `;
+
+  const tabs = document.querySelectorAll(".tab");
+
+  const planetsImg = document.querySelector(".planetsImg");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const selectedTab = tab.getAttribute("data-tab");
+      console.log("Selected Tab:", selectedTab);
+
+      tabs.forEach((tabActiveItem) => {
+        tabActiveItem.classList.remove("tab__active");
+      });
+
+      tab.classList.add("tab__active");
+
+
+      const geologyIMG = document.querySelector(".geologyImg")
+
+
+      if (selectedTab !== "geology") {
+        planetsImg.src = currentPlanet.images[selectedTab];
+        geologyIMG.style.display = "none";
+      } else {
+        planetsImg.src = currentPlanet.images.planet;
+
+        const planetNameToLower = currentPlanet.name.toLowerCase()
+
+        const geologyImageSrc = `assets/images/geology-${planetNameToLower}.png`;
+
+        // console.log(geologyImage)
+
+        planetsImg.src = currentPlanet.images.planet;
+
+        geologyIMG.src = geologyImageSrc;
+        geologyIMG.style.display = "block"
+        
+      }
+      console.log(planetsImg.src);
+    });
+  });
 
   planetsSpecs.innerHTML = `
     <div>
@@ -68,4 +110,7 @@ window.addEventListener("hashchange", (event) => {
     <p>${currentPlanet.temperature}</p>
     </div>   
   `;
-});
+}
+
+window.addEventListener("load", (event) => renderPlanetsHTML(event));
+window.addEventListener("hashchange", (event) => renderPlanetsHTML(event));

@@ -77,8 +77,9 @@ header {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 5rem;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .planets img {
@@ -87,7 +88,7 @@ header {
 }
 
 .planetsText {
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   width: 400px;
 }
 
@@ -187,4 +188,16 @@ header {
 
 .tab__active {
   background-color: #497efa;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.geologyImg {
+  position: absolute;
+  width: 165px !important;
+  height: 200px !important;
+  bottom: -4rem ;
+  left: 65px;
 }
