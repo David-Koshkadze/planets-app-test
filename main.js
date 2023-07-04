@@ -24,12 +24,18 @@ window.addEventListener("hashchange", (event) => {
 
   let planetName = event.target.location.hash.replace("#/planets/", ""); // #/planets/
 
-  let currentPlanet = planets.find((el) => (el.name == planetName))
+  let currentPlanet = planets.find((el) => el.name == planetName);
 
-  console.log("Current Planet", currentPlanet)
+  console.log("Current Planet", currentPlanet);
 
   planetsDiv.innerHTML = `
-    <p>${currentPlanet.name}</p>
     <img src="${currentPlanet.images.planet}" />
+
+    <div class="planetsText">
+      <h1>${currentPlanet.name}</h1>
+      <p>${currentPlanet.overview.content}</p>
+      <br />
+      <p>Source: <a href="" target="_blank">Wikipedia</a> </p>
+    </div>
   `;
 });
