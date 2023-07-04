@@ -5,23 +5,32 @@ const planetsSpecs = document.querySelector(".planetsSpecs");
 
 let planets = [];
 
-fetch(API_URL)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log("Planets initial", data);
-
-    planets = [...data];
-  })
-  .catch((err) => console.log(err));
+const fetchPlanets = () => {
+  fetch(API_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Planets initial", data);
+      planets = [...data];
+      renderPlanetsHTML("Mercury");
+    })
+    .catch((err) => console.log(err));
+}
 
 console.log(window.location);
 
-function renderPlanetsHTML(event) {
-  console.log(event.target.location.hash);
+function renderPlanetsHTML(defaultPlanet) {
+  console.log(window.location.hash);
 
   console.log("Planets Array", planets);
 
-  let planetName = event.target.location.hash.replace("#/planets/", ""); // #/planets/
+  let planetName;
+
+  if (defaultPlanet) {
+    planetName = defaultPlanet;
+  } else {
+    planetName = window.location.hash.replace("#/planets/", ""); // #/planets/
+  }
+  console.log(planetName);
 
   let currentPlanet = planets.find((el) => el.name == planetName);
 
@@ -63,9 +72,7 @@ function renderPlanetsHTML(event) {
 
       tab.classList.add("tab__active");
 
-
-      const geologyIMG = document.querySelector(".geologyImg")
-
+      const geologyIMG = document.querySelector(".geologyImg");
 
       if (selectedTab !== "geology") {
         planetsImg.src = currentPlanet.images[selectedTab];
@@ -73,7 +80,7 @@ function renderPlanetsHTML(event) {
       } else {
         planetsImg.src = currentPlanet.images.planet;
 
-        const planetNameToLower = currentPlanet.name.toLowerCase()
+        const planetNameToLower = currentPlanet.name.toLowerCase();
 
         const geologyImageSrc = `assets/images/geology-${planetNameToLower}.png`;
 
@@ -82,8 +89,7 @@ function renderPlanetsHTML(event) {
         planetsImg.src = currentPlanet.images.planet;
 
         geologyIMG.src = geologyImageSrc;
-        geologyIMG.style.display = "block"
-        
+        geologyIMG.style.display = "block";
       }
       console.log(planetsImg.src);
     });
@@ -112,5 +118,6 @@ function renderPlanetsHTML(event) {
   `;
 }
 
-window.addEventListener("load", (event) => renderPlanetsHTML(event));
-window.addEventListener("hashchange", (event) => renderPlanetsHTML(event));
+fetchPlanets();
+
+window.addEventListener("hashchange", (event) => renderPlanetsHTML(null));
