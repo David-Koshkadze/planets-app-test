@@ -14,7 +14,7 @@ const fetchPlanets = () => {
       renderPlanetsHTML("Mercury");
     })
     .catch((err) => console.log(err));
-}
+};
 
 console.log(window.location);
 
@@ -44,9 +44,9 @@ function renderPlanetsHTML(defaultPlanet) {
 
     <div class="planetsText">
       <h1>${currentPlanet.name}</h1>
-      <p>${currentPlanet.overview.content}</p>
+      <p class="planetTextString">${currentPlanet.overview.content}</p>
       <br />
-      <p>Source: <a href="" target="_blank">Wikipedia</a> </p>
+      <p>Source: <a class="planetSource" href="" target="_blank">Wikipedia</a> </p>
 
       <div class="tabs">
         <div class="tab tab__active" data-tab="planet"><span>1</span><p>Overview</p></div> 
@@ -60,6 +60,8 @@ function renderPlanetsHTML(defaultPlanet) {
   const tabs = document.querySelectorAll(".tab");
 
   const planetsImg = document.querySelector(".planetsImg");
+  const planetTextString = document.querySelector(".planetTextString");
+  const planetSource = document.querySelector(".planetSource")
 
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -71,6 +73,19 @@ function renderPlanetsHTML(defaultPlanet) {
       });
 
       tab.classList.add("tab__active");
+
+      // Change Text
+
+      if (selectedTab === "planet") {
+        planetTextString.textContent = currentPlanet.overview.content;
+        planetSource.href = currentPlanet.overview.source
+      } else if (selectedTab === "internal") {
+        planetTextString.textContent = currentPlanet.structure.content;
+        planetSource.href = currentPlanet.structure.source
+      } else if (selectedTab === "geology") {
+        planetTextString.textContent = currentPlanet.geology.content;
+        planetSource.href = currentPlanet.geology.source
+      }
 
       const geologyIMG = document.querySelector(".geologyImg");
 
@@ -91,7 +106,7 @@ function renderPlanetsHTML(defaultPlanet) {
         geologyIMG.src = geologyImageSrc;
         geologyIMG.style.display = "block";
       }
-      console.log(planetsImg.src);
+      // console.log(planetsImg.src);
     });
   });
 
