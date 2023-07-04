@@ -66,9 +66,11 @@ header {
 .container {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 165px;
 }
 
 .planets {
@@ -77,6 +79,11 @@ header {
   justify-content: space-between;
   gap: 5rem;
   border: 1px solid red;
+}
+
+.planets img {
+  width: 290px;
+  height: 290px;
 }
 
 .planetsText {
@@ -91,6 +98,7 @@ header {
   text-transform: uppercase;
   font-weight: 400;
   font-size: 80px;
+  margin-bottom: 0.75rem;
 }
 
 .planetsText p {
@@ -98,6 +106,85 @@ header {
   width: 350px;
   font-size: 14px;
   color: #ffffff80;
-  
+
   line-height: 22px;
+}
+
+.planetsText a {
+  color: #ffffff80;
+}
+
+.planetsSpecs {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  padding: 0 5rem;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.planetsSpecs div {
+  border: 1px solid #fff;
+  flex: 1;
+  width: 255px;
+  height: 128px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.planetsSpecs div p {
+  font-size: 40px;
+  font-family: Antonio;
+  font-style: normal;
+  font-weight: 400;
+  /* font-size: 25px; */
+  letter-spacing: -0.75px;
+  margin-left: 15px;
+}
+
+.planetsSpecsSpan {
+  font-size: 11px;
+  opacity: 0.5;
+  font-style: normal;
+  font-weight: 700;
+  /* font-size: 12px; */
+  line-height: 16px;
+  letter-spacing: 0.727273px;
+  margin-left: 15px;
+}
+
+/* Tabs */
+.tabs {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.tab {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  gap: 2rem;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tab p {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 25px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.tab:hover {
+  background-color: #d8d8d880;
+}
+
+.tab__active {
+  background-color: #497efa;
 }

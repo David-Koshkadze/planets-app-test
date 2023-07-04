@@ -1,6 +1,7 @@
 const API_URL = "https://planets-api.vercel.app/api/v1/planets/"; // Mercury
 
 const planetsDiv = document.querySelector(".planets");
+const planetsSpecs = document.querySelector(".planetsSpecs");
 
 let planets = [];
 
@@ -36,6 +37,35 @@ window.addEventListener("hashchange", (event) => {
       <p>${currentPlanet.overview.content}</p>
       <br />
       <p>Source: <a href="" target="_blank">Wikipedia</a> </p>
+
+      <div class="tabs">
+        <div class="tab tab__active" data-tab="overview"><span>1</span><p>Overview</p></div> 
+        <div class="tab" data-tab="structure"><span>2</span><p>Internal Structure</p></div> 
+        <div class="tab" data-tab="geology"><span>3</span><p>Surface Geology</p></div> 
+      </div>
+
     </div>
+  `;
+
+  planetsSpecs.innerHTML = `
+    <div>
+    <span class="planetsSpecsSpan">ROTATION TIME</span>
+    <p>${currentPlanet.rotation}</p>
+    </div>   
+
+    <div>
+    <span class="planetsSpecsSpan">REVOLUTION TIME</span>
+    <p>${currentPlanet.revolution}</p>
+    </div>   
+
+    <div>
+    <span class="planetsSpecsSpan">RADIUS</span>
+    <p>${currentPlanet.radius}</p>
+    </div>   
+
+    <div>
+    <span class="planetsSpecsSpan">AVERAGE TEMP.</span>
+    <p>${currentPlanet.temperature}</p>
+    </div>   
   `;
 });
