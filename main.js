@@ -18,6 +18,15 @@ const fetchPlanets = () => {
 
 console.log(window.location);
 
+
+const burgerMenuIcon = document.querySelector(".burgerMenuIcon");
+const mobileNavLinks = document.querySelector(".mobileNavLinks")
+
+burgerMenuIcon.addEventListener('click', () => {
+  console.log(mobileNavLinks)
+  mobileNavLinks.classList.toggle("showMobileNav")
+})
+
 function renderPlanetsHTML(defaultPlanet) {
   console.log(window.location.hash);
 

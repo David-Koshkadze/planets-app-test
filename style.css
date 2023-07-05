@@ -87,6 +87,11 @@ header {
   height: 290px;
 }
 
+.geologyImg {
+  display: block;
+  height: 90px !important;
+}
+
 .planetsText {
   /* border: 1px solid yellow; */
   width: 400px;
@@ -202,7 +207,15 @@ header {
   left: 63px;
 }
 
+.burgerMenuIcon {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
+  .container {
+    height: auto;
+  }
+
   .planets {
     flex-direction: column;
   }
@@ -210,6 +223,13 @@ header {
   .planetsImg {
     width: 111px;
     height: 111px;
+  }
+
+  .geologyImg {
+    width: 100px !important ;
+    height: 110px !important;
+    left: 6px;
+    bottom: -6.5rem;
   }
 
   .planetsText {
@@ -261,7 +281,7 @@ header {
     left: 0;
     display: flex;
     flex-direction: row;
-    top: 4rem;
+    top: 2.25rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     width: 100%;
     justify-content: center;
@@ -301,4 +321,49 @@ header {
   .tab span {
     display: none;
   }
+
+  /* Navigation */
+  header {
+    height: 68px;
+  }
+
+  .navItems {
+    display: none;
+  }
+
+  .burgerMenuIcon {
+    display: block;
+  }
+}
+
+.mobileNavLinks {
+  display: none;
+  background: transparent;
+  height: 100vh;
+  position: absolute;
+  z-index: 99999;
+  width: 100%;
+  background-color: #070724;
+  background-image: url(/assets/images/background-stars.svg);
+  background-size: cover;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  flex-direction: column;
+}
+
+.mobileNavLinks a {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 0.5rem 1rem 2rem;
+  color: #fff;
+  font-family: League Spartan, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: left;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.showMobileNav {
+  display: flex;
 }
